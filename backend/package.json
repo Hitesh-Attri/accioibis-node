@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/speech": "^6.0.2",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -19,6 +20,9 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.0.0",
     "mongoose": "^7.5.0",
-    "twilio": "^4.17.0"
+    "path": "^0.12.7",
+    "twilio": "^4.17.0",
+    "wavefile": "^11.0.0",
+    "ws": "^8.14.1"
   }
 }

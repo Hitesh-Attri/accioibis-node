@@ -1,8 +1,5 @@
-const { app } = require("./app.js");
-const { connectDB } = require("./config/db");
+const { server } = require("./app.js");
 
-// connectDB();
-
-app.listen(process.env.PORT, () => {
+server.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
 });

@@ -1,5 +1,4 @@
-import { useState } from "react";
-import "./App.css";
+import React from "react";
 import Home from "./Screens/Home";
 import { Toaster } from "react-hot-toast";
 

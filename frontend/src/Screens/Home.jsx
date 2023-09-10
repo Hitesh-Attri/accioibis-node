@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Input, InputGroup, InputLeftAddon } from "@chakra-ui/react";
 import { toast } from "react-hot-toast";
+import WebSocketCmp from "../Components/WebSocketCmp";
+import axios from "axios";
 
 const Home = () => {
   const [phnNumber, setPhnNo] = useState("");
@@ -12,16 +14,28 @@ const Home = () => {
     number.current.focus();
   }, []);
 
-  const handleCall = () => {
+  const handleCall = async () => {
     if (/^[6-9]\d{9}$/.test(phnNumber)) {
-      toast.success(phnNumber);
+      setLoading(true);
+
+      try {
+        let res = await axios.post(
+          "https://759f-103-167-115-190.ngrok-free.app/api/twilio/call",
+          { phnNumber: phnNumber }
+        );
+        toast.success(res.data.msg);
+        setLoading(false);
+      } catch (error) {
+        toast.error(error.response.data.msg);
+        setLoading(false);
+      }
     } else {
       toast.error("Invalid Phone Number");
     }
   };
 
   return (
-    <div className="bg-slate-600 h-screen w-screen flex justify-center items-center">
+    <div className="bg-slate-600 h-screen w-screen flex justify-center items-center flex-col space-y-6">
       <InputGroup sx={{ width: "20%" }}>
         <InputLeftAddon children="+91" />
         <Input
@@ -41,6 +55,7 @@ const Home = () => {
           Call
         </Button>
       </InputGroup>
+      <WebSocketCmp />
     </div>
   );
 };
